@@ -4,6 +4,7 @@
 - add mulltiple same items
 - add multiple different items
 ## View shopping cart
+- view page without added item
 - view one added item
 - view multiple same added items
 - view multiple different added items
