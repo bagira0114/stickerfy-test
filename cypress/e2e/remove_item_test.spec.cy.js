@@ -61,4 +61,16 @@ describe('Remove items from cart', () => {
 
     })
 
+    it('Removes all happy items in case of multiple added happy items', () => {
+        cy.visit('http://localhost:3000/');
+        cy.get('body > div > div:nth-child(2) > div:nth-child(1) > div > div > div > a').click();
+        cy.get('body > div > div:nth-child(2) > div:nth-child(1) > div > div > div > a').click();
+        cy.get('#cart').click();
+        cy.get('.list-group-item > .badge').should('have.text', '2');
+        cy.get('#products > ul > li > div > button').click();
+        cy.get('#products > ul > li > div > ul > li:nth-child(2) > a').click();
+        cy.get('#checkout').should('not.exist');
+
+    })
+
 })
