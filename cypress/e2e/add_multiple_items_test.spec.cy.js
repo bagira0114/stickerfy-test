@@ -17,4 +17,11 @@ describe('Add multiple items to the cart', () =>{
         cy.get(':nth-child(3) > .thumbnail > .caption > .clearfix > .btn').click();
         cy.get('.badge').should('have.text', 2);
     })
+    it('Adds multiple different items to the cart', () => {
+        cy.visit('http://localhost:3000/');
+        cy.get(':nth-child(1) > .thumbnail > .caption > .clearfix > .btn').click();
+        cy.get(':nth-child(2) > .thumbnail > .caption > .clearfix > .btn').click();
+        cy.get(':nth-child(3) > .thumbnail > .caption > .clearfix > .btn').click();
+        cy.get('.badge').should('have.text', 3);
+    })
 })
