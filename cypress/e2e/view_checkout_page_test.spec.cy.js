@@ -122,5 +122,25 @@ describe('View checkout page', () => {
                     })
             })
     })
+    it('Shows the checkout page in case of multiple added different items', () => {
+        cy.visit('http://localhost:3000/');
+        cy.get(HAPPY_ITEM).click();
+        cy.get(ANGRY_ITEM).click();
+        cy.get(SAD_ITEM).click();
+        cy.get(CART).click();
+        cy.get(TOTAL_PRICE)
+            .invoke('text')
+            .invoke('slice', '7')
+            .then(amount => {
+                cy.get(CHECKOUT).click();
+                cy.url().should('include', '/checkout');
+                cy.get(TOTAL)
+                    .invoke('text')
+                    .invoke('slice', '8')
+                    .then(amount2 => {
+                        expect(amount.trim()).to.equal(amount2.trim());
+                    })
+            })
+    })
 
 })
